@@ -1,23 +1,29 @@
 import React from "react";
-import { Outlet, useLocation, Location } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Crumb from "./Crumb";
 
 interface MessageMap {
   [key: string]: string;
 }
 
 const LOCATION_TO_MESSAGE: MessageMap = {
-  "/": "Star Wars Explorer",
   "/people": "People",
+  "/movies": "Movies",
+  "/planets": "Planets",
 };
 
 function NagivationLayout() {
-  const location = useLocation();
+  const { pathname } = useLocation();
+  const paths = pathname.split("/");
+  const listPagePath = `/${paths[1]}`;
+
   return (
     <div>
       <AppBar>
@@ -31,9 +37,21 @@ function NagivationLayout() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {LOCATION_TO_MESSAGE[location.pathname]}
-          </Typography>
+          <Breadcrumbs color="inherit" aria-label="breadcrumb">
+            <Crumb
+              to="/"
+              label="Star Wars Explorer"
+              clickable={pathname !== "/"}
+            />
+            {paths[1] && (
+              <Crumb
+                to={listPagePath}
+                label={LOCATION_TO_MESSAGE[listPagePath]}
+                clickable={pathname !== listPagePath}
+              />
+            )}
+            {paths[2] && <Crumb to="" label="Profile" clickable={false} />}
+          </Breadcrumbs>
         </Toolbar>
       </AppBar>
       <Container maxWidth="md" style={{ marginTop: "80px" }}>
