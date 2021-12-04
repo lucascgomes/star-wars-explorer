@@ -1,0 +1,2 @@
+(this["webpackJsonpstar-wars-explorer"]=this["webpackJsonpstar-wars-explorer"]||[]).push([[12],{189:function(e,t,r){"use strict";r.r(t);r(0);var s=r(29),c=r(1);t.default=function(){return Object(c.jsxs)("div",{children:[Object(c.jsx)("h2",{children:"Page not found"}),Object(c.jsx)("p",{children:Object(c.jsx)(s.b,{to:"/",children:"Go to the home page"})})]})}}}]);
+//# sourceMappingURL=12.d098c410.chunk.js.map
