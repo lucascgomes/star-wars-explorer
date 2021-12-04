@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import StarWarsApiProfile from "../StarWarsApiProfile";
+import useProfileFetch from "../../hooks/useProfileFetch";
+import {
+  beginFetch,
+  fetchSuccess,
+  fetchError,
+} from "../../reducers/fetchPlanetProfileSlice";
+import StarWarsProfile from "../StarWarsProfile";
 
 const FIELDS = [
   {
@@ -24,12 +30,28 @@ const FIELDS = [
 function PlanetProfilePage() {
   let { planetId } = useParams();
 
+  const [{ isLoading, error, data }, fetchProfile] = useProfileFetch(
+    "planetProfileReducer"
+  );
+
+  useEffect(() => {
+    if (fetchProfile && planetId) {
+      fetchProfile(`https://swapi.dev/api/planets/${planetId}`, {
+        beginFetch,
+        fetchSuccess,
+        fetchError,
+      });
+    }
+  }, [fetchProfile, planetId]);
+
   return (
     <div>
-      <StarWarsApiProfile
+      <StarWarsProfile
         fields={FIELDS}
-        titleAccessor="name"
-        api={`https://swapi.dev/api/planets/${planetId}`}
+        isLoading={isLoading}
+        error={error}
+        data={data}
+        title={data.name}
       />
     </div>
   );

@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import StarWarsApiProfile from "../StarWarsApiProfile";
+import useProfileFetch from "../../hooks/useProfileFetch";
+import {
+  beginFetch,
+  fetchSuccess,
+  fetchError,
+} from "../../reducers/fetchMovieProfileSlice";
+import StarWarsProfile from "../StarWarsProfile";
 
 const FIELDS = [
   {
@@ -20,12 +26,28 @@ const FIELDS = [
 function MovieProfilePage() {
   let { movieId } = useParams();
 
+  const [{ isLoading, error, data }, fetchProfile] = useProfileFetch(
+    "movieProfileReducer"
+  );
+
+  useEffect(() => {
+    if (fetchProfile && movieId) {
+      fetchProfile(`https://swapi.dev/api/films/${movieId}`, {
+        beginFetch,
+        fetchSuccess,
+        fetchError,
+      });
+    }
+  }, [fetchProfile, movieId]);
+
   return (
     <div>
-      <StarWarsApiProfile
+      <StarWarsProfile
         fields={FIELDS}
-        titleAccessor="title"
-        api={`https://swapi.dev/api/films/${movieId}`}
+        isLoading={isLoading}
+        error={error}
+        data={data}
+        title={data.title}
       />
     </div>
   );

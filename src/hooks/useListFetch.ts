@@ -47,7 +47,7 @@ const fetchList =
     getAllPages(api, fetchSuccess, fetchError, dispatch);
   };
 
-const useListApi = (name: string) => {
+const useListFetch = (name: string) => {
   const slice = useSelector((state: StateModel) => state[name]);
   const dispatch = useDispatch();
   const fetchListMemo = useMemo(() => fetchList(dispatch), [dispatch]);
@@ -55,4 +55,4 @@ const useListApi = (name: string) => {
   return [slice, fetchListMemo];
 };
 
-export default useListApi;
+export default useListFetch;

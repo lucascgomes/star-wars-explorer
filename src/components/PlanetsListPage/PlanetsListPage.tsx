@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import useListApi from "../../hooks/useListApi";
+import useListFetch from "../../hooks/useListFetch";
 import {
   beginFetch,
   fetchSuccess,
@@ -9,7 +9,7 @@ import StarWarsList from "../StarWarsList";
 
 function PlanetsListPage() {
   const [{ isLoading, error, data }, fetchList] =
-    useListApi("planetsListReducer");
+    useListFetch("planetsListReducer");
 
   useEffect(() => {
     fetchList("https://swapi.dev/api/planets", {

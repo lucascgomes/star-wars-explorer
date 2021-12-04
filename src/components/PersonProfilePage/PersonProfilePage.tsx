@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import StarWarsApiProfile from "../StarWarsApiProfile";
+import useProfileFetch from "../../hooks/useProfileFetch";
+import {
+  beginFetch,
+  fetchSuccess,
+  fetchError,
+} from "../../reducers/fetchPersonProfileSlice";
+import StarWarsProfile from "../StarWarsProfile";
 
 const FIELDS = [
   {
@@ -36,12 +42,28 @@ const FIELDS = [
 function PersonProfilePage() {
   let { personId } = useParams();
 
+  const [{ isLoading, error, data }, fetchProfile] = useProfileFetch(
+    "personProfileReducer"
+  );
+
+  useEffect(() => {
+    if (fetchProfile && personId) {
+      fetchProfile(`https://swapi.dev/api/people/${personId}`, {
+        beginFetch,
+        fetchSuccess,
+        fetchError,
+      });
+    }
+  }, [fetchProfile, personId]);
+
   return (
     <div>
-      <StarWarsApiProfile
+      <StarWarsProfile
         fields={FIELDS}
-        titleAccessor="name"
-        api={`https://swapi.dev/api/people/${personId}`}
+        isLoading={isLoading}
+        error={error}
+        data={data}
+        title={data.name}
       />
     </div>
   );

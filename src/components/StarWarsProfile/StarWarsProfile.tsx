@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import Alert from "@mui/material/Alert";
 
 interface Profile {
-  [key: string]: any;
-  id?: string;
+  [key: string]: string;
+  id: string;
 }
 
 interface Field {
@@ -12,24 +13,34 @@ interface Field {
   label: string;
 }
 
-interface StarWarsApiProfileModel {
+interface StarWarsProfileModel {
   fields: Array<Field>;
-  titleAccessor: string;
-  api: string;
+  title: string;
+  isLoading: boolean;
+  error: any;
+  data: Profile;
 }
 
-function StarWarsApiProfile({
+function StarWarsProfile({
   fields,
-  titleAccessor,
-  api,
-}: StarWarsApiProfileModel) {
-  const [profile, setProfile]: [Profile, Function] = useState({});
+  title,
+  isLoading,
+  error,
+  data,
+}: StarWarsProfileModel) {
+  if (isLoading) {
+    return <Typography variant="h6">Loading...</Typography>;
+  }
 
-  useEffect(() => {
-    fetch(api)
-      .then((response) => response.json())
-      .then((data) => setProfile(data));
-  }, [api]);
+  if (error) {
+    return (
+      <Alert severity="error">
+        An error occurred while retrieving the profile.
+        <br />
+        Please try again later.
+      </Alert>
+    );
+  }
 
   return (
     <div>
@@ -38,14 +49,14 @@ function StarWarsApiProfile({
         component="div"
         sx={{ marginBottom: 1, marginTop: 1 }}
       >
-        {profile[titleAccessor]}
+        {title}
       </Typography>
       {fields.map((field) => (
         <div key={field.id}>
           <TextField
             id={field.id}
             label={field.label}
-            value={profile[field.id] || ""}
+            value={data[field.id] || ""}
             sx={{ marginBottom: 1, marginTop: 1 }}
             variant="standard"
             disabled
@@ -56,4 +67,4 @@ function StarWarsApiProfile({
   );
 }
 
-export default StarWarsApiProfile;
+export default StarWarsProfile;
