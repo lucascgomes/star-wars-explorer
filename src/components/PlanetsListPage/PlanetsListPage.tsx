@@ -1,12 +1,31 @@
-import React from "react";
-import StarWarsApiList from "../StarWarsApiList";
+import React, { useEffect } from "react";
+import useListApi from "../../hooks/useListApi";
+import {
+  beginFetch,
+  fetchSuccess,
+  fetchError,
+} from "../../reducers/fetchPlanetsListSlice";
+import StarWarsList from "../StarWarsList";
 
 function PlanetsListPage() {
+  const [{ isLoading, error, data }, fetchList] =
+    useListApi("planetsListReducer");
+
+  useEffect(() => {
+    fetchList("https://swapi.dev/api/planets", {
+      beginFetch,
+      fetchSuccess,
+      fetchError,
+    });
+  }, [fetchList]);
+
   return (
     <div>
-      <StarWarsApiList
-        api="https://swapi.dev/api/planets"
-        itemLocationPath="/planets"
+      <StarWarsList
+        isLoading={isLoading}
+        error={error}
+        items={data}
+        link="/planets/:itemId"
         accessor="name"
       />
     </div>

@@ -1,18 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import fetchMovieProfileReducer from "./reducers/fetchMovieProfileSlice";
-import fetchMoviesListReducer from "./reducers/fetchMoviesListSlice";
-import fetchPeopleListReducer from "./reducers/fetchPeopleListSlice";
-import fetchPersonProfileReducer from "./reducers/fetchPersonProfileSlice";
-import fetchPlanetProfileReducer from "./reducers/fetchPlanetProfileSlice";
-import fetchPlanetsListReducer from "./reducers/fetchPlanetsListSlice";
+import movieProfileReducer from "./reducers/fetchMovieProfileSlice";
+import moviesListReducer from "./reducers/fetchMoviesListSlice";
+import peopleListReducer from "./reducers/fetchPeopleListSlice";
+import personProfileReducer from "./reducers/fetchPersonProfileSlice";
+import planetProfileReducer from "./reducers/fetchPlanetProfileSlice";
+import planetsListReducer from "./reducers/fetchPlanetsListSlice";
 
 export default configureStore({
   reducer: {
-    fetchMovieProfileReducer,
-    fetchMoviesListReducer,
-    fetchPeopleListReducer,
-    fetchPersonProfileReducer,
-    fetchPlanetProfileReducer,
-    fetchPlanetsListReducer,
+    movieProfileReducer,
+    moviesListReducer,
+    peopleListReducer,
+    personProfileReducer,
+    planetProfileReducer,
+    planetsListReducer,
   },
 });
