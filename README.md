@@ -1,5 +1,7 @@
 # Star Wars Explorer
 
+Working demo: https://lucascgomes.github.io/
+
 ## Instalation
 
 Be sure to have npm installed.
