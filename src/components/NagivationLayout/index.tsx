@@ -1,62 +1,28 @@
 import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import AppBar from "@mui/material/AppBar";
-import IconButton from "@mui/material/IconButton";
-import Toolbar from "@mui/material/Toolbar";
-import Container from "@mui/material/Container";
-import MenuIcon from "@mui/icons-material/Menu";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Crumb from "./Crumb";
+import { Outlet } from "react-router-dom";
+import MuiContainer from "@mui/material/Container";
+import MuiPaper from "@mui/material/Paper";
+import { styled } from "@mui/system";
+import AppBar from "./AppBar";
 
-interface MessageMap {
-  [key: string]: string;
-}
+const Container = styled(MuiContainer)({
+  paddingTop: "100px",
+  paddingBottom: "36px",
+});
 
-const LOCATION_TO_MESSAGE: MessageMap = {
-  "/people": "People",
-  "/movies": "Movies",
-  "/planets": "Planets",
-};
+const Paper = styled(MuiPaper)({
+  backgroundColor: "#000",
+  backgroundImage: "none",
+});
 
 function NagivationLayout() {
-  const { pathname } = useLocation();
-  const paths = pathname.split("/");
-  const listPagePath = `/${paths[1]}`;
-
   return (
-    <div>
-      <AppBar>
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Breadcrumbs color="inherit" aria-label="breadcrumb">
-            <Crumb
-              to="/"
-              label="Star Wars Explorer"
-              clickable={pathname !== "/"}
-            />
-            {paths[1] && (
-              <Crumb
-                to={listPagePath}
-                label={LOCATION_TO_MESSAGE[listPagePath]}
-                clickable={pathname !== listPagePath}
-              />
-            )}
-            {paths[2] && <Crumb to="" label="Profile" clickable={false} />}
-          </Breadcrumbs>
-        </Toolbar>
-      </AppBar>
-      <Container maxWidth="md" style={{ marginTop: "80px" }}>
+    <Paper>
+      <AppBar />
+      <Container maxWidth="md">
         <Outlet />
       </Container>
-    </div>
+    </Paper>
   );
 }
 

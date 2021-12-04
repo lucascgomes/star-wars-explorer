@@ -1,9 +1,7 @@
 import React from "react";
-import List from "@mui/material/List";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemButton from "@mui/material/ListItemButton";
+import Stack from "@mui/material/Stack";
 import Alert from "@mui/material/Alert";
-import { Link } from "react-router-dom";
+import LinkButton from "../LinkButton";
 import Loader from "../Loader";
 
 interface Item {
@@ -39,17 +37,13 @@ function StarWarsList({
   }
 
   return (
-    <List>
+    <Stack spacing={2} justifyContent="center" alignItems="center">
       {items.map((item: Item) => (
-        <ListItemButton
-          component={Link}
-          to={link.replace(":itemId", item.id)}
-          key={item.id}
-        >
-          <ListItemText primary={item[accessor]} />
-        </ListItemButton>
+        <LinkButton to={link.replace(":itemId", item.id)} key={item.id}>
+          {item[accessor]}
+        </LinkButton>
       ))}
-    </List>
+    </Stack>
   );
 }
 
