@@ -1,7 +1,6 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import AppBar from "@mui/material/AppBar";
-import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Container from "@mui/material/Container";
