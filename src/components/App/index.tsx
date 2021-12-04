@@ -1,5 +1,14 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import {
+  INDEX,
+  PEOPLE_LIST_PAGE,
+  PERSON_PROFILE_PAGE,
+  MOVIES_LIST_PAGE,
+  MOVIE_PROFILE_PAGE,
+  PLANETS_LIST_PAGE,
+  PLANET_PROFILE_PAGE,
+} from "../../locations";
 import NagivationLayout from "../NagivationLayout";
 import Loader from "../Loader";
 
@@ -15,9 +24,10 @@ const NoMatchPage = lazy(() => import("../NoMatchPage"));
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<NagivationLayout />}>
+      <Route path="/" element={<Navigate to={INDEX} replace />} />
+      <Route path={INDEX} element={<NagivationLayout />}>
         <Route
-          index
+          path={INDEX}
           element={
             <Suspense fallback={<Loader name="Home Page" />}>
               <HomePage />
@@ -25,7 +35,7 @@ function App() {
           }
         />
         <Route
-          path="/people"
+          path={PEOPLE_LIST_PAGE}
           element={
             <Suspense fallback={<Loader name="People List Page" />}>
               <PeopleListPage />
@@ -33,7 +43,7 @@ function App() {
           }
         />
         <Route
-          path="/people/:personId"
+          path={PERSON_PROFILE_PAGE}
           element={
             <Suspense fallback={<Loader name="Person Profile Page" />}>
               <PersonProfilePage />
@@ -41,7 +51,7 @@ function App() {
           }
         />
         <Route
-          path="/movies"
+          path={MOVIES_LIST_PAGE}
           element={
             <Suspense fallback={<Loader name="Movies List Page" />}>
               <MoviesListPage />
@@ -49,7 +59,7 @@ function App() {
           }
         />
         <Route
-          path="/movies/:movieId"
+          path={MOVIE_PROFILE_PAGE}
           element={
             <Suspense fallback={<Loader name="Movie Profile Page" />}>
               <MovieProfilePage />
@@ -57,7 +67,7 @@ function App() {
           }
         />
         <Route
-          path="/planets"
+          path={PLANETS_LIST_PAGE}
           element={
             <Suspense fallback={<Loader name="Planets List Page" />}>
               <PlanetsListPage />
@@ -65,16 +75,12 @@ function App() {
           }
         />
         <Route
-          path="/planets/:planetId"
+          path={PLANET_PROFILE_PAGE}
           element={
             <Suspense fallback={<Loader name="Planet Profile Page" />}>
               <PlanetProfilePage />
             </Suspense>
           }
-        />
-        <Route
-          path="/star-wars-explorer"
-          element={<Navigate to="/" replace />}
         />
         <Route
           path="*"

@@ -40,21 +40,21 @@ const FIELDS = [
 ];
 
 function PersonProfilePage() {
-  let { personId } = useParams();
+  const { profileId } = useParams();
 
   const [{ isLoading, error, data }, fetchProfile] = useProfileFetch(
     "personProfileReducer"
   );
 
   useEffect(() => {
-    if (fetchProfile && personId) {
-      fetchProfile(`https://swapi.dev/api/people/${personId}`, {
+    if (fetchProfile && profileId) {
+      fetchProfile(`https://swapi.dev/api/people/${profileId}`, {
         beginFetch,
         fetchSuccess,
         fetchError,
       });
     }
-  }, [fetchProfile, personId]);
+  }, [fetchProfile, profileId]);
 
   return (
     <div>

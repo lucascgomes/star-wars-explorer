@@ -39,7 +39,7 @@ function StarWarsList({
   return (
     <Stack spacing={2} justifyContent="center" alignItems="center">
       {items.map((item: Item) => (
-        <LinkButton to={link.replace(":itemId", item.id)} key={item.id}>
+        <LinkButton to={link.replace(":profileId", item.id)} key={item.id}>
           {item[accessor]}
         </LinkButton>
       ))}

@@ -5,6 +5,7 @@ import {
   fetchSuccess,
   fetchError,
 } from "../../reducers/fetchMoviesListSlice";
+import { MOVIE_PROFILE_PAGE } from "../../locations";
 import StarWarsList from "../StarWarsList";
 
 function MoviesListPage() {
@@ -25,7 +26,7 @@ function MoviesListPage() {
         isLoading={isLoading}
         error={error}
         items={data}
-        link="/movies/:itemId"
+        link={MOVIE_PROFILE_PAGE}
         accessor="title"
       />
     </div>

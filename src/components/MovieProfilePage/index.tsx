@@ -24,21 +24,21 @@ const FIELDS = [
 ];
 
 function MovieProfilePage() {
-  let { movieId } = useParams();
+  const { profileId } = useParams();
 
   const [{ isLoading, error, data }, fetchProfile] = useProfileFetch(
     "movieProfileReducer"
   );
 
   useEffect(() => {
-    if (fetchProfile && movieId) {
-      fetchProfile(`https://swapi.dev/api/films/${movieId}`, {
+    if (fetchProfile && profileId) {
+      fetchProfile(`https://swapi.dev/api/films/${profileId}`, {
         beginFetch,
         fetchSuccess,
         fetchError,
       });
     }
-  }, [fetchProfile, movieId]);
+  }, [fetchProfile, profileId]);
 
   return (
     <div>

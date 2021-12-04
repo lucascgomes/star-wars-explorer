@@ -5,6 +5,7 @@ import {
   fetchSuccess,
   fetchError,
 } from "../../reducers/fetchPeopleListSlice";
+import { PERSON_PROFILE_PAGE } from "../../locations";
 import StarWarsList from "../StarWarsList";
 
 function PeopleListPage() {
@@ -25,7 +26,7 @@ function PeopleListPage() {
         isLoading={isLoading}
         error={error}
         items={data}
-        link="/people/:itemId"
+        link={PERSON_PROFILE_PAGE}
         accessor="name"
       />
     </div>

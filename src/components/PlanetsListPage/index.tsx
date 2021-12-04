@@ -5,6 +5,7 @@ import {
   fetchSuccess,
   fetchError,
 } from "../../reducers/fetchPlanetsListSlice";
+import { PLANET_PROFILE_PAGE } from "../../locations";
 import StarWarsList from "../StarWarsList";
 
 function PlanetsListPage() {
@@ -25,7 +26,7 @@ function PlanetsListPage() {
         isLoading={isLoading}
         error={error}
         items={data}
-        link="/planets/:itemId"
+        link={PLANET_PROFILE_PAGE}
         accessor="name"
       />
     </div>

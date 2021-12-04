@@ -28,21 +28,21 @@ const FIELDS = [
 ];
 
 function PlanetProfilePage() {
-  let { planetId } = useParams();
+  const { profileId } = useParams();
 
   const [{ isLoading, error, data }, fetchProfile] = useProfileFetch(
     "planetProfileReducer"
   );
 
   useEffect(() => {
-    if (fetchProfile && planetId) {
-      fetchProfile(`https://swapi.dev/api/planets/${planetId}`, {
+    if (fetchProfile && profileId) {
+      fetchProfile(`https://swapi.dev/api/planets/${profileId}`, {
         beginFetch,
         fetchSuccess,
         fetchError,
       });
     }
-  }, [fetchProfile, planetId]);
+  }, [fetchProfile, profileId]);
 
   return (
     <div>
