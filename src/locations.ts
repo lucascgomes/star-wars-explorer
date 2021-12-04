@@ -1,4 +1,4 @@
-export const INDEX = process.env.PUBLIC_URL;
+export const INDEX = "/star-wars-explorer";
 export const PEOPLE_LIST_PAGE = `${INDEX}/people`;
 export const PERSON_PROFILE_PAGE = `${INDEX}/people/:profileId`;
 export const MOVIES_LIST_PAGE = `${INDEX}/movies`;
