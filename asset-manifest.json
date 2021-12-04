@@ -5,8 +5,8 @@
     "static/js/1.8d4013ef.chunk.js": "/star-wars-explorer/static/js/1.8d4013ef.chunk.js",
     "static/js/1.8d4013ef.chunk.js.map": "/star-wars-explorer/static/js/1.8d4013ef.chunk.js.map",
     "main.css": "/star-wars-explorer/static/css/main.9f6546be.chunk.css",
-    "main.js": "/star-wars-explorer/static/js/main.8068ad45.chunk.js",
-    "main.js.map": "/star-wars-explorer/static/js/main.8068ad45.chunk.js.map",
+    "main.js": "/star-wars-explorer/static/js/main.333d6adf.chunk.js",
+    "main.js.map": "/star-wars-explorer/static/js/main.333d6adf.chunk.js.map",
     "runtime-main.js": "/star-wars-explorer/static/js/runtime-main.76a2d62e.js",
     "runtime-main.js.map": "/star-wars-explorer/static/js/runtime-main.76a2d62e.js.map",
     "static/js/4.dce52179.chunk.js": "/star-wars-explorer/static/js/4.dce52179.chunk.js",
@@ -37,6 +37,6 @@
     "static/js/runtime-main.76a2d62e.js",
     "static/js/4.dce52179.chunk.js",
     "static/css/main.9f6546be.chunk.css",
-    "static/js/main.8068ad45.chunk.js"
+    "static/js/main.333d6adf.chunk.js"
   ]
 }
