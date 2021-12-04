@@ -1,6 +1,6 @@
 # Star Wars Explorer
 
-Working demo: https://lucascgomes.github.io/
+Working demo: https://lucascgomes.github.io/star-wars-explorer
 
 ## Instalation
 

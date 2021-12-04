@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import NagivationLayout from "../NagivationLayout";
 import Loader from "../Loader";
 
@@ -71,6 +71,10 @@ function App() {
               <PlanetProfilePage />
             </Suspense>
           }
+        />
+        <Route
+          path="/star-wars-explorer"
+          element={<Navigate to="/" replace />}
         />
         <Route
           path="*"
