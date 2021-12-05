@@ -21,5 +21,7 @@ In the project directory, run: `npm start`
 
 ## Future improvements (things that I wish I had time to implement)
 
+- Tests
 - Pagination in list pages
 - Cache strategy for requests
+- Internationalization
