@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import useProfileFetch from "../../hooks/useProfileFetch";
 import {
   beginFetch,
@@ -7,6 +8,14 @@ import {
   fetchError,
 } from "../../reducers/fetchPersonProfileSlice";
 import StarWarsProfile from "../StarWarsProfile";
+
+interface State {
+  peopleListReducer: any;
+}
+
+interface Item {
+  id: string;
+}
 
 const FIELDS = [
   {
@@ -42,19 +51,26 @@ const FIELDS = [
 function PersonProfilePage() {
   const { profileId } = useParams();
 
+  const dispatch = useDispatch();
+
+  const list = useSelector((state: State) => state.peopleListReducer.data);
+
   const [{ isLoading, error, data }, fetchProfile] = useProfileFetch(
     "personProfileReducer"
   );
 
   useEffect(() => {
-    if (fetchProfile && profileId) {
+    const profile = list.find((item: Item) => item.id === profileId);
+    if (profile) {
+      dispatch(fetchSuccess(profile));
+    } else if (fetchProfile && profileId) {
       fetchProfile(`https://swapi.dev/api/people/${profileId}`, {
         beginFetch,
         fetchSuccess,
         fetchError,
       });
     }
-  }, [fetchProfile, profileId]);
+  }, [fetchProfile, profileId, list, dispatch]);
 
   return (
     <div>

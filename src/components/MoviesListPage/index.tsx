@@ -13,12 +13,14 @@ function MoviesListPage() {
     useListFetch("moviesListReducer");
 
   useEffect(() => {
-    fetchList("https://swapi.dev/api/films", {
-      beginFetch,
-      fetchSuccess,
-      fetchError,
-    });
-  }, [fetchList]);
+    if (!data.length) {
+      fetchList("https://swapi.dev/api/films", {
+        beginFetch,
+        fetchSuccess,
+        fetchError,
+      });
+    }
+  }, [fetchList, data]);
 
   return (
     <div>

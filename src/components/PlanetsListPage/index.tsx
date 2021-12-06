@@ -13,12 +13,14 @@ function PlanetsListPage() {
     useListFetch("planetsListReducer");
 
   useEffect(() => {
-    fetchList("https://swapi.dev/api/planets", {
-      beginFetch,
-      fetchSuccess,
-      fetchError,
-    });
-  }, [fetchList]);
+    if (!data.length) {
+      fetchList("https://swapi.dev/api/planets", {
+        beginFetch,
+        fetchSuccess,
+        fetchError,
+      });
+    }
+  }, [fetchList, data]);
 
   return (
     <div>

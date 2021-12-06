@@ -23,5 +23,5 @@ In the project directory, run: `npm start`
 
 - Tests
 - Pagination in list pages
-- Cache strategy for requests
 - Internationalization
+- Reuse better logic between list and profile pages
