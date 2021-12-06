@@ -25,3 +25,4 @@ In the project directory, run: `npm start`
 - Pagination in list pages
 - Internationalization
 - Reuse better logic between list and profile pages
+- Fix github pages problem when refreshing routes
